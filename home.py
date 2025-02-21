@@ -15,12 +15,14 @@ def continent_dropdown():
 @st.fragment
 def country_dropdown(continent):
     if continent == 'Select a continent':
-        countries = ['Select a country']
+        return st.selectbox('Select Country', 
+                            options=['Select a country'],
+                            key='country_key')
     else:
         countries = continents_countries.get(continent, [])
-    return st.selectbox('Select Country', 
-                        options=['Select a country'] + countries,
-                        key='country_key')
+        return st.selectbox('Select Country', 
+                            options=['Select a country'] + countries,
+                            key='country_key')
 
 selected_continent = continent_dropdown()
 selected_country = country_dropdown(selected_continent)
@@ -31,4 +33,3 @@ elif selected_continent != 'Select a continent':
     st.write(f"You selected {selected_continent}. Please select a country.")
 else:
     st.write("Please select a continent and a country.")
-    
