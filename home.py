@@ -82,4 +82,4 @@ if file is not None:
           future[col] = 1 if col in [selected_vendor, selected_item] else 0
      forecast=model.predict(future)
      st.write(forecast[['ds','yhat','yhat_lower','yhat_upper']].tail(15))
-     st.write(pd.__version__, prophet.__version__)
+     st.write([pd.__version__, prophet.__version__])
