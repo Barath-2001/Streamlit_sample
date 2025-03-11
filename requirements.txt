@@ -1,3 +1,4 @@
+torch
 matplotlib
 plotly
 seaborn
@@ -10,4 +11,4 @@ scikit-learn
 prophet
 numpy
 random
-torch
+
