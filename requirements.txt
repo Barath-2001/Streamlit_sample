@@ -8,3 +8,4 @@ openpyxl
 datetime
 scikit-learn
 prophet
+numpy
