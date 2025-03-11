@@ -83,4 +83,4 @@ if file is not None:
      forecast=model.predict(future)
      st.write(forecast[['ds','yhat','yhat_lower','yhat_upper']].tail(15))
      st.write(pd.__version__)
-     st.write(prophet.__version__)
+     st.write(Prophet.__version__)
