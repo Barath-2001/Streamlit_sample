@@ -11,11 +11,13 @@ import time
 from sklearn.preprocessing import OneHotEncoder
 from prophet import Prophet
 import prophet
+import numpy as np
+# Set a fixed seed
 
 
 st.set_page_config(page_title = 'Application')
 st.title("Supplier Analysis")
-
+np.random.seed(42)  
 file= st.file_uploader(label = 'Upload your dataset:',type=['xlsx','csv'])
 
 if file is not None:
