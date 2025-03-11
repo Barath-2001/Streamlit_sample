@@ -10,6 +10,8 @@ import datetime
 import time
 from sklearn.preprocessing import OneHotEncoder
 from prophet import Prophet
+import prophet
+
 
 st.set_page_config(page_title = 'Application')
 st.title("Supplier Analysis")
@@ -83,4 +85,4 @@ if file is not None:
      forecast=model.predict(future)
      st.write(forecast[['ds','yhat','yhat_lower','yhat_upper']].tail(15))
      st.write(pd.__version__)
-     st.write(Prophet.__version__)
+     st.write(prophet.__version__)
