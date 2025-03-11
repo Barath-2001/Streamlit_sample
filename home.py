@@ -13,7 +13,7 @@ from prophet import Prophet
 import prophet
 # Set a fixed seed
 import numpy as np
-
+import random
 
 
 st.set_page_config(page_title = 'Application')
