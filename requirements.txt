@@ -1,4 +1,3 @@
-torch
 matplotlib
 plotly
 seaborn
@@ -10,5 +9,5 @@ datetime
 scikit-learn
 prophet
 numpy
-random
+
 
