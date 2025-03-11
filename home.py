@@ -13,13 +13,12 @@ from prophet import Prophet
 import prophet
 # Set a fixed seed
 import numpy as np
-import random
+
 
 
 st.set_page_config(page_title = 'Application')
 st.title("Supplier Analysis")
 np.random.seed(42)
-random.seed(42)
 file= st.file_uploader(label = 'Upload your dataset:',type=['xlsx','csv'])
 
 if file is not None:
