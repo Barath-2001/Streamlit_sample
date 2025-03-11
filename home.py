@@ -17,7 +17,6 @@ import numpy as np
 
 st.set_page_config(page_title = 'Application')
 st.title("Supplier Analysis")
-np.random.seed(42)
 
 file= st.file_uploader(label = 'Upload your dataset:',type=['xlsx','csv'])
 
