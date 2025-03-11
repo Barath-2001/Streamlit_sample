@@ -68,6 +68,7 @@ if file is not None:
      DF['ds']=DF['TRANSACTION_DATE'].copy()
      DF['y']=DF['REJECTION_RATE'].copy()
      DF.drop(columns=['PO_LINE_ID','ACTUAL_QUANTITY','TRANSACTION_TYPE','TRANSACTION_DATE','REJECTION_RATE','PROMISED_DATE'],inplace=True)
+     st.write(DF.dtypes)
      encoder=OneHotEncoder(sparse_output=False)
      encoded = encoder.fit_transform(DF[['VENDOR_ID', 'ITEM_ID']])
      columns = [f"{col}_{int(val)}" for col, vals in zip(['VENDOR', 'ITEM'], encoder.categories_) for val in vals]
@@ -85,6 +86,7 @@ if file is not None:
      for col in columns:
           future[col] = 1 if col in [selected_vendor, selected_item] else 0
      forecast=model.predict(future)
+     st.write(forecast.dtypes)
      st.write(forecast[['ds','yhat','yhat_lower','yhat_upper']].tail(15))
      st.write(pd.__version__)
      st.write(prophet.__version__)
