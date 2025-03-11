@@ -13,11 +13,15 @@ from prophet import Prophet
 import prophet
 import numpy as np
 # Set a fixed seed
-
+import numpy as np
+import random
+import torch
 
 st.set_page_config(page_title = 'Application')
 st.title("Supplier Analysis")
-np.random.seed(42)  
+np.random.seed(42)
+random.seed(42)
+torch.manual_seed(42)
 file= st.file_uploader(label = 'Upload your dataset:',type=['xlsx','csv'])
 
 if file is not None:
