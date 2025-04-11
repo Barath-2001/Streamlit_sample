@@ -1,23 +1,29 @@
 import streamlit as st
 import pandas as pd
 
-# Sample data with a long text column
-data = {
-    "ID": [1, 2, 3],
-    "Name": ["Alice", "Bob", "Charlie"],
-    "Details": [
-        "This is a long description about Alice. She is working on multiple projects in data science, machine learning, and AI.",
-        "Bob has a very detailed history in backend development, especially with Python and FastAPI.",
-        "Charlie is involved in frontend development with React and has a strong grasp on UI/UX principles."
-    ]
-}
 
-df = pd.DataFrame(data)
+# Nested data in one of the columns
+nested_data = [
+    pd.DataFrame({"Item": ["Apples", "Bananas"], "Qty": [5, 3]}),
+    pd.DataFrame({"Item": ["Oranges", "Grapes"], "Qty": [2, 7]}),
+    pd.DataFrame({"Item": ["Milk", "Bread"], "Qty": [1, 2]})
+]
 
-# Convert the 'Details' column into expandable HTML blocks
-df["Details"] = df["Details"].apply(lambda x: f"<details><summary>Click to expand</summary><p>{x}</p></details>")
+main_df = pd.DataFrame({
+    "Order ID": [101, 102, 103],
+    "Customer": ["Alice", "Bob", "Charlie"],
+    "Items": nested_data
+})
 
-st.title("📊 Expandable Column in DataFrame Table")
+def df_to_expandable_html(nested_df):
+    # Convert nested df to HTML
+    html_table = nested_df.to_html(index=False)
+    # Wrap it in <details> tag for expandability
+    return f"<details><summary>View Items</summary>{html_table}</details>"
 
-# Display the styled table
-st.write(df.to_html(escape=False), unsafe_allow_html=True)
+main_df["Items"] = main_df["Items"].apply(df_to_expandable_html)
+
+st.title("🧾 Orders with Expandable Items")
+
+# Render with HTML for expandable effect
+st.write(main_df.to_html(escape=False), unsafe_allow_html=True)
