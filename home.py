@@ -2,40 +2,31 @@ import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridOptionsBuilder
 
-# Sample DataFrame
-df = pd.DataFrame({
+# Sample DataFrame with expandable content
+data = {
     "ID": [1, 2, 3],
     "Name": ["Alice", "Bob", "Charlie"],
-    "Details": [
-        "Alice is working on a long project about natural language processing.",
-        "Bob's report includes multiple modules and dependencies for data processing.",
-        "Charlie is handling the deployment phase, monitoring logs and performance."
+    "Comments": [
+        "This is a long comment that should be expandable in the table.",
+        "Another long comment that provides detailed feedback on performance.",
+        "Short one."
     ]
-})
+}
 
-# Build grid options
+df = pd.DataFrame(data)
+
+st.title("Expandable Column in Streamlit Data Table")
+
+# Create grid options
 gb = GridOptionsBuilder.from_dataframe(df)
+gb.configure_column("Comments", autoHeight=True, wrapText=True)
+grid_options = gb.build()
 
-# Make 'Details' column expandable
-gb.configure_column(
-    "Details",
-    cellRenderer="""
-    function(params) {
-        const text = params.value;
-        const short = text.length > 50 ? text.substring(0, 50) + "..." : text;
-        return `<details><summary>${short}</summary><div style="white-space: normal;">${text}</div></details>`;
-    }
-    """,
-    autoHeight=True,
-    wrapText=True
-)
-
-# Build and display the grid
-gridOptions = gb.build()
-
+# Render interactive grid
 AgGrid(
     df,
-    gridOptions=gridOptions,
-    allow_unsafe_jscode=True,  # Required for the HTML inside cell
-    fit_columns_on_grid_load=True
+    gridOptions=grid_options,
+    enable_enterprise_modules=False,
+    allow_unsafe_jscode=True,
+    theme="streamlit"
 )
