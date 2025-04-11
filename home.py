@@ -14,7 +14,7 @@ main_df = pd.DataFrame({
     "Customer": ["Alice", "Bob", "Charlie"],
     "Items": nested_data
 })
-st.write(main_df)
+st.dataframe(main_df)
 # Convert nested DataFrame to clean, inline-expandable HTML
 def df_to_expandable_html(nested_df):
     html_table = nested_df.to_html(index=False, border=0)
